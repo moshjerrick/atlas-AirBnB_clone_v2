@@ -27,6 +27,7 @@ def c_route(text):
 def python_route(text='is cool'):
     return 'Python %s' % text.replace('_', ' ')
 
+
 @app.route('/number/<int:n>', strict_slashes=False)
 def number_route(n):
     return '%d is a number' % n
