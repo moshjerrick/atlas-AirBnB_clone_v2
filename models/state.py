@@ -18,6 +18,7 @@ class State(BaseModel):
     else:
         name = ""
 
+
     if models.storage_t != "db":
         @property
         def cities(self):
