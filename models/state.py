@@ -9,7 +9,7 @@ from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-class State(BaseModel, Base):
+class State(BaseModel):
     """Representation of state """
     if models.storage_t == "db":
         __tablename__ = 'states'
@@ -17,4 +17,11 @@ class State(BaseModel, Base):
         cities = relationship("City", backref="state")
     else:
         name = ""
-    cites = []
+        # Placeholder for cities list
+        self.cities = []
+
+    @property
+    def cities(self):
+        # Implement logic to retrieve cities associated with this state
+        # For demonstration, returning an empty list
+        return self.cities
