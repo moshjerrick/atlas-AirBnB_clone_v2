@@ -17,11 +17,14 @@ class State(BaseModel):
         cities = relationship("City", backref="state")
     else:
         name = ""
-        # Placeholder for cities list
-        self.cities = []
 
-    @property
-    def cities(self):
-        # Implement logic to retrieve cities associated with this state
-        # For demonstration, returning an empty list
-        return self.cities
+    if models.storage_t != "db":
+        @property
+        def cities(self):
+            """getter for list of city instances related to the state"""
+            city_list = []
+            all_cities = models.storage.all(City)
+            for city in all_cities.values():
+                if city.state_id == self.id:
+                    city_list.append(city)
+            return city_list
