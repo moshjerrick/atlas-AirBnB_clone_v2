@@ -6,6 +6,10 @@ from flask import Flask, render_template
 from models import *
 from models import storage
 from models.state import State
+import logging
+log_handler = logging.FileHandler('application.log')
+log_handler.setLevel(logging.ERROR)
+app.logger.addHandler(log_handler)
 
 
 app = Flask(__name__)
@@ -36,4 +40,4 @@ def teardown_db(exception=None):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0.0', port=5000, debug=True, use_reloader=False, use_debugger=True)
